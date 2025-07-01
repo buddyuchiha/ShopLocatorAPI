@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Shop(models.Model):
@@ -18,6 +19,7 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Street(models.Model):
     name = models.CharField(max_length=255)
