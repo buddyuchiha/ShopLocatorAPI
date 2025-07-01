@@ -1,13 +1,14 @@
 from rest_framework import serializers
 from .models  import Shop, City, Street
 
+
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City 
         fields = [
                     "name"
                  ]
-
+        
 
 class StreetSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,8 +19,6 @@ class StreetSerializer(serializers.ModelSerializer):
 
 
 class ShopSerializer(serializers.ModelSerializer):
-    city = serializers.CharField(source='city.name')
-    street = serializers.CharField(source='street.name')
     class Meta:
         model = Shop
         fields = [
@@ -27,3 +26,9 @@ class ShopSerializer(serializers.ModelSerializer):
                     "street", "house",
                     "time_open", "time_close"
                  ]
+        
+
+class GetShopSerializer(ShopSerializer):
+    city = serializers.CharField(source='city.name', read_only=True)
+    street = serializers.CharField(source='street.name', read_only=True)
+

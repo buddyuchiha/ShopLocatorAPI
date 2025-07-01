@@ -7,7 +7,12 @@ from django.views.generic import View
 
 from .filters import ShopFilter
 from .models import City, Shop, Street
-from .serializer import ShopSerializer, CitySerializer, StreetSerializer
+from .serializer import (
+    GetShopSerializer,
+    ShopSerializer,
+    CitySerializer,
+    StreetSerializer
+)
 # Create your views here.
 
 class MyView(View):
@@ -48,6 +53,6 @@ class PostShop(CreateAPIView):
   
 class GetShop(ListAPIView):
     queryset = Shop.objects.all()
-    serializer_class = ShopSerializer
+    serializer_class = GetShopSerializer
     filter_backends = [filters.DjangoFilterBackend]
     filterset_class = ShopFilter 
