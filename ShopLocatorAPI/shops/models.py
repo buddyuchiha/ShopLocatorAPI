@@ -6,9 +6,9 @@ class Shop(models.Model):
     name = models.CharField(max_length=255)
     city = models.ForeignKey('City', on_delete=models.CASCADE)
     street = models.ForeignKey('Street', on_delete=models.CASCADE)
-    house = models.CharField(max_length=255)
-    time_open = models.DateTimeField()
-    time_close = models.DateTimeField()
+    house = models.SlugField(max_length=255)
+    time_open = models.TimeField()
+    time_close = models.TimeField()
 
     def __str__(self):
         return self.name
