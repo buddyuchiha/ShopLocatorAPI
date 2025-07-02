@@ -3,6 +3,12 @@
 
 ---
 
+## Тестовое задание
+
+[MediaSoft.Тестовое задание.Python.pdf](https://github.com/user-attachments/files/21017566/MediaSoft.Python.pdf)
+
+---
+
 ## Описание проекта
 
  REST API сервис для управления магазинами с функционалом:
@@ -10,6 +16,21 @@
 - Создание и фильтрация магазинов
 - Автоматическое определение статуса "открыт/закрыт" на основе времени работы
 
+---
+
+## Технологический стек
+
+### Основные технологии
+
+- Django 5.2
+- Django REST Framework 3.14
+- PostgreSQL 13+
+
+### Дополнительные зависимости
+- django-filters
+- psycopg2-binary
+- Django ORM
+  
 ---
 
 ## Подготовительные действия
@@ -37,6 +58,7 @@
 6. **Запустить сервер**
 
 ![image](https://github.com/user-attachments/assets/bb20f8ca-210d-4cca-be59-994cfa9d0d2d)
+
  
 
    
