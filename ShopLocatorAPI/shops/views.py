@@ -13,28 +13,37 @@ from .serializer import (
     CitySerializer,
     StreetSerializer
 )
-# Create your views here.
+
+
+class BaseListAPIView(ListAPIView):
+      def handle_exception(self, exc):
+        return Response({'data': 'Incorrect request'}, status=400)
+    
 
 class MyView(View):
     def get(self, request, *args, **kwargs):
-        return HttpResponse('GET request')
+        return render(request, 'shops/home_view.html')
     
     def post(self, request, *args, **kwargs):
         return HttpResponse('POST request')
     
 
-class GetCity(ListAPIView):
+class GetCity(BaseListAPIView):
     queryset = City.objects.all() 
     serializer_class = CitySerializer
     
+
 class PostCity(CreateAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
 
     
-class GetCityStreets(ListAPIView):
+class GetCityStreets(BaseListAPIView):
     queryset = Street.objects.all()
     serializer_class = StreetSerializer
+    def get_queryset(self):
+        city_id = self.kwargs['city_id'] 
+        return Street.objects.filter(city_id=city_id)
 
 
 class PostStreet(CreateAPIView):
@@ -51,7 +60,7 @@ class PostShop(CreateAPIView):
         Response(obj.id)
 
   
-class GetShop(ListAPIView):
+class GetShop(BaseListAPIView):
     queryset = Shop.objects.all()
     serializer_class = GetShopSerializer
     filter_backends = [filters.DjangoFilterBackend]
